@@ -1,26 +1,4 @@
-resource "aws_security_group" "db-sg" {
-  vpc_id = aws_vpc.main.id
-  name   = "db-sg"
-  description = "Allow access to our DB from anywhere"
 
-  ingress {
-    protocol        = "tcp"
-    from_port       = 3306
-    to_port         = 63306
-    # security_groups = [aws_security_group.allow_tls.id]  # Replace <instance> with the actual identifier of your instance's security group
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "db-sg"
-  }
-}
 
 # RDS cluster
 resource "aws_rds_cluster" "rds-cluster" {
